@@ -1,0 +1,42 @@
+<%- attributes.each do |attribute| -%>
+            <span <%%= visible_column("<%= singular_table_name %>", "<%= attribute.name %>") %> class="bs-col-<%= attribute.name %> <%%= align_attribute("<%= attribute.type %>") %>">
+              <%- if @gallifrey_attributes.include?(attribute.name + ':price') then -%>
+                <%%= number_to_currency(<%= singular_table_name %>.<%= attribute.name %>, :locale => I18n.locale) %>
+              <%- elsif @gallifrey_attributes.include?(attribute.name + ':boolean') then -%>
+                <%%= t((<%= singular_table_name %>.<%= attribute.name %> ? "yes" : "no").to_sym) %>
+              <%- elsif @gallifrey_attributes.include?(attribute.name + ':references') then -%>
+                <%% if not <%= singular_table_name %>.<%= attribute.name %>_id.nil? then %>
+                  <%%= link_to <%= singular_table_name %>.<%= attribute.name %>.caption, <%= namespace_for_route %><%= attribute.name %>_path(<%= singular_table_name %>.<%= attribute.name %>_id) %>
+                <%% else %>
+                  <%%= t(:any, :default => "Any") %>
+                <%% end %>
+              <%- else -%>
+                <%%= <%= singular_table_name %>.<%= attribute.name %> %>
+              <%- end -%>
+            </span>
+<%- end -%>
+<%% if <%= singular_table_name %>.avatar.attached? %>
+<img src="<%%= url_for <%= singular_table_name %>.avatar %>" />
+<%% end %>
+           <td class="ac am"><%%= link_to '<i class="fa fa-search"></i>'.html_safe, <%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:show, :default => "Show") %></td>
+            <td class="ac am"><%%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_<%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:edit, :default => "Edit") %></td>
+            <td class="ac am"><%%= link_to '<i class="fa fa-times"></i>'.html_safe, <%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :data => { :confirm => t(:are_you_sure, :default => "Are you sure?") }, :method => :delete, :title => t(:destroy, :default => "Destroy") %></td>
+          </tr>
+          <%% end %>
+     
+
+      <div class="btn-toolbar">
+        <div class="btn-group">
+          <%% clean_params %>
+          <%%= will_paginate @<%= plural_table_name %>,
+                  :inner_window => 0,
+                  :outer_window => 0,
+                  :previous_label => t(:prev, :default => "Previous"),
+                  :next_label => t(:next, :default => "Next") %>
+
+        </div>
+   <%#= render_partial 'app/views/partials/_index_file_download.html.erb' %>
+      </div>
+    <%% end %>
+
+   <%#= render_partial 'app/views/partials/_index_column_filter.html.erb' %>
