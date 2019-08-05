@@ -6,56 +6,10 @@
   <%% end %>
 </p>
 
-<%%= render :partial => "layouts/mass_inserting", :locals => { :engine => '<%= engine_opt %>', :namespace => '<%= namespace_alone %>', :model_name => '<%= model %>', :model_columns => [<%= attributes.map{ |e| "'#{e.name}'" }.join(',') %>] } %>
-
-<%%# Set your scopes below (string in array) %>
-<%% scopes = [] %>
-<%% if not scopes.blank? then %>
-<div class="btn-toolbar">
-  <div class="btn-group">
-    <%%= link_to "All (#{@<%= model %>_scope_for_scope.count})", <%= namespace_for_route %><%= plural_table_name %>_path(:scope => ""), :class => "btn btn-default #{((session[:scope][:<%= model %>].to_s == '') ? 'active' : '')}" %>
-    <%% for scope in scopes %>
-    <%%= link_to "#{scope} (#{@<%= model %>_scope_for_scope.send(scope).count})", <%= namespace_for_route %><%= plural_table_name %>_path(:scope => scope), :class => "btn btn-default #{((session[:scope][:<%= model %>].to_s == scope) ? 'active' : '')}" %>
-    <%% end %>
-  </div>
-</div>
-<%% end %>
-
-<div class="row">
-  <div class="col-md-12">
-    <a class="btn btn-xs btn-default" id="hide-menu-btn">
-      <i class="fa fa-caret-left"></i>
-      <i class="fa fa-caret-left"></i>
-    </a>
-    <a class="btn btn-xs btn-default" id="show-menu-btn">
-      <i class="fa fa-caret-right"></i>
-      <i class="fa fa-caret-right"></i>
-    </a>
-
-    <a class="btn btn-xs btn-default pull-right" id="hide-search-btn">
-      <i class="fa fa-caret-right"></i>
-      <i class="fa fa-caret-right"></i>
-    </a>
-    <a class="btn btn-xs btn-default pull-right" id="show-search-btn">
-      <i class="fa fa-caret-left"></i>
-      <i class="fa fa-caret-left"></i>
-    </a>
-  </div>
-</div>
-
+<%= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
 <div class="row">
   <div class="col-md-9">
-    <%%= form_tag  batch_<%= namespace_for_route %><%= plural_table_name %>_path, :class => "form-inline" do %>
-      <div class="well well-small">
-        <label class="control-label" for="select01"><%%= t(:batch, :default => "Batch") %></label>
-
-        <select id="select01" name="actionprocess" class="form-control">
-          <option value="destroy"><%%= t(:destroy, :default => "Destroy") %></option>
-<%= render_partial 'app/views/partials/_index_batch.html.erb' %>
-          <!-- Gallifrey_scaffold - AddField - Batch - Do not remove -->
-        </select>
-        <button class="btn btn-default" type="submit"><i class="fa fa-ok"></i> <%%= t(:process, :default => "Process") %></button>
-      </div>
+ 
 
       <%%= render :partial => "layouts/modal_columns", :locals => { :engine_name => '<%= engine_opt %>', :model_name => "<%= singular_table_name %>", :model_columns => [<%= (attributes.map{ |e| "'#{e.name}'" }.to_a + ["'created_at'", "'updated_at'"]).join(',') %>] } %>
 
