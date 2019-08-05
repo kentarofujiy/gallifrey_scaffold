@@ -1,13 +1,15 @@
 <div class="card-deck">
        <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-             <%- attributes.each do |attribute| -%>
+          
   <div class="card">
+    
     <%% if <%= singular_table_name %>.avatar.attached? %>
 <img src="<%%= url_for <%= singular_table_name %>.avatar %>" class="card-img-top"/>
     <%% end %>
     <div class="card-body">
-
+   <%- attributes.each do |attribute| -%>
        <h5 class="card-title">  <%%= <%= singular_table_name %>.<%= attribute.name %> %></h5>
+           <%- end -%>
       <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
   
@@ -21,7 +23,7 @@
       
     </div>
   </div>
-    <%- end -%>
+
     <%% end %>
        
        
