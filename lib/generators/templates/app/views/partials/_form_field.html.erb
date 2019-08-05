@@ -1,0 +1,117 @@
+ <div class="form-group">
+   <%%= f.file_field :avatar %>
+   
+  </div>
+
+<%- attributes.each do |attribute| -%>
+  <%- if @gallifrey_attributes.include?(attribute.name + ':wysiwyg') then -%>
+    <div class="form-group">
+     
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <%%= f.text_area :<%= attribute.name %>, :class => "wysiwyg-editor form-control" %>
+    </div>
+    <%%= f.hidden_field :<%= attribute.name %>_typetext, :value => "html"  %>
+  <%- elsif @gallifrey_attributes.include?(attribute.name + ':references') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <%%= f.collection_select :<%= attribute.name %>_id, <%= attribute.name.camelcase %>.all, :id, :caption, { :include_blank => true }, { :class => "form-control" } %>
+    </div>
+  <%- elsif @gallifrey_attributes.include?(attribute.name + ':price') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <div class="input-group">
+        <span class="input-group-addon">$</span><%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => "form-control" %>
+      </div>
+    </div>
+  <%- elsif @gallifrey_attributes.include?(attribute.name + ':date') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(3i)]" id="<%= singular_table_name %>_<%= attribute.name %>_3i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.day rescue "" end %>" />
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(2i)]" id="<%= singular_table_name %>_<%= attribute.name %>_2i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.mon rescue "" end %>" />
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(1i)]" id="<%= singular_table_name %>_<%= attribute.name %>_1i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.year rescue "" end %>" />
+      <div class="input-group">
+        <%%= f.text_field :<%= attribute.name %>, :value => (begin @<%= singular_table_name %>.<%= attribute.name %>.strftime("%d/%m/%Y") rescue "" end), :class => "dpicker form-control" %><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+    </div>
+  <%- elsif @gallifrey_attributes.include?(attribute.name + ':datetime') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(3i)]" id="<%= singular_table_name %>_<%= attribute.name %>_3i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.day rescue "" end %>" />
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(2i)]" id="<%= singular_table_name %>_<%= attribute.name %>_2i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.mon rescue "" end %>" />
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(1i)]" id="<%= singular_table_name %>_<%= attribute.name %>_1i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.year rescue "" end %>" />
+      <div class="input-group">
+        <%%= f.text_field :<%= attribute.name %>, :value => (begin @<%= singular_table_name %>.<%= attribute.name %>.strftime("%d/%m/%Y") rescue "" end), :class => "dpicker form-control" %><span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+      </div>
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(4i)]" id="<%= singular_table_name %>_<%= attribute.name %>_4i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.min rescue "" end %>" />
+      <input type="hidden" name="<%= singular_table_name %>[<%= attribute.name %>(5i)]" id="<%= singular_table_name %>_<%= attribute.name %>_5i" value="<%%= begin @<%= singular_table_name %>.<%= attribute.name %>.hour rescue "" end %>" />
+      <div class="input-group">
+        <%%= f.text_field :<%= attribute.name %>, :value => (begin @<%= singular_table_name %>.<%= attribute.name %>.strftime("%H:%M") rescue "" end), :class => "tpicker form-control" %><span class="input-group-addon"><i class="fa fa-clock-o"></i></span>
+      </div>
+    </div>
+  <%- elsif @gallifrey_attributes.include?(attribute.name + ':color') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <div class="input-group color" data-color="<%%= (@<%= model %>.<%= attribute.name %> || "rgba(0, 0, 0)") %>" data-color-format="rgba">
+        <%%= f.<%= attribute.field_type %> :<%= attribute.name %>, :class => "form-control" %><span class="input-group-addon"><i style="background-color: rgb(0, 0, 0)"></i></span>
+      </div>
+    </div>
+    <%- elsif @gallifrey_attributes.include?(attribute.name + ':cropimg') then -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+       <input id="<%= model %>_cropimg" name="<%= model %>[cropimg]" style="display:none">
+       </br>
+       <input type="file" id="upphoto" style="display:none;">
+        <label for="upphoto">
+            <div class="inputLabel btn btn-default">
+
+               Hiperbanner
+
+            </div>
+        </label>
+        <div class="cropHolder">
+    <div id="cropWrapper">
+        <img id="inputImage" src="images/face.jpg">
+    </div>
+    <div class="cropInputs">
+        <div class="inputtools">
+            <p>
+                <span>Movimento Horizontal</span>
+            </p>
+            <input type="range" class="cropRange" name="xmove" id="xmove" min="0" value="0">
+        </div>
+        <div class="inputtools">
+            <p>
+                      <span>Movimento Vertical</span>
+            </p>
+            <input type="range" class="cropRange" name="ymove" id="ymove" min="0" value="0">
+        </div>
+        <br>
+        <button class="cropButtons" id="zplus">
+            <img src="<%#= asset_path 'add.png' %>">
+        </button>
+        <button class="cropButtons" id="zminus">
+            <img src="<%#= asset_path 'minus.png' %>">
+        </button>
+        <br>
+        <button id="cropSubmit" class="btn btn-primary btn-sm">Enviar</button>
+        <button id="closeCrop" class="btn btn-danger btn-sm">Cancelar</button>
+    </div>
+</div>
+  </div>
+<script>
+    $("#upphoto").finecrop({
+        viewHeight: 950,
+        cropWidth: 720,
+        cropHeight: 480,
+        cropInput: 'inputImage',
+        cropOutput: '<%= model %>_cropimg',
+        zoomValue: 50
+    });
+</script>
+  <%- else -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.name %>, <%= i18n_t_a(singular_table_name, attribute.name) %>.capitalize, :class => "control-label" %>
+      <%%= f.<%= attribute.field_type %> :<%= attribute.name %><%= ', :rows => 5' if attribute.field_type == :text_area %>, :class => "form-control" %>
+    </div>
+  <%- end -%>
+<%- end -%>

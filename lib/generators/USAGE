@@ -1,0 +1,16 @@
+Description:
+    scaffold, migration and locale
+
+Example:
+    rails generate gallifrey_scaffold model attribute:type attribute:type ...
+    rails generate gallifrey scaffold price:price name:string visible:boolean description:richtext
+    rails generate gallifrey_scaffold product family:references price:price name:string visible:boolean description:richtext
+    
+    rails generate gallifrey_migration AddColorToProducts color:string
+
+    rails generate gallifrey_locale {fr|en|all}
+
+    rails generate gallifrey_jointable product tag
+
+    rails generate gallifrey_devisecancan user
+       
