@@ -6,25 +6,10 @@
     <%% end %>
     <div class="card-body">
       <%- attributes.each do |attribute| -%>
-            <span <%%= visible_column("<%= singular_table_name %>", "<%= attribute.name %>") %> class="bs-col-<%= attribute.name %> <%%= align_attribute("<%= attribute.type %>") %>">
-              <%- if @gallifrey_attributes.include?(attribute.name + ':price') then -%>
-                <%%= number_to_currency(<%= singular_table_name %>.<%= attribute.name %>, :locale => I18n.locale) %>
-              <%- elsif @gallifrey_attributes.include?(attribute.name + ':boolean') then -%>
-                <%%= t((<%= singular_table_name %>.<%= attribute.name %> ? "yes" : "no").to_sym) %>
-              <%- elsif @gallifrey_attributes.include?(attribute.name + ':references') then -%>
-                <%% if not <%= singular_table_name %>.<%= attribute.name %>_id.nil? then %>
-                  <%%= link_to <%= singular_table_name %>.<%= attribute.name %>.caption, <%= namespace_for_route %><%= attribute.name %>_path(<%= singular_table_name %>.<%= attribute.name %>_id) %>
-                <%% else %>
-                  <%%= t(:any, :default => "Any") %>
-                <%% end %>
-              <%- else -%>
-                <%%= <%= singular_table_name %>.<%= attribute.name %> %>
-              <%- end -%>
-            </span>
-<%- end -%>
-      <h5 class="card-title">Card title</h5>
+       <h5 class="card-title">  <%%= <%= singular_table_name %>.<%= attribute.name %> %></h5>
       <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
       <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      <%- end -%>
     </div>
       <div class="card-footer">
      
