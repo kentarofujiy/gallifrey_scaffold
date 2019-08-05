@@ -1,4 +1,4 @@
-<%= render_partial 'app/views/partials/_title_table_name.html.erb' %>
+<%#= render_partial 'app/views/partials/_title_table_name.html.erb' %>
 <p>
   <%%= link_to '<i class="fa fa-plus"></i> '.html_safe + t(:new, :default => "New") + ' ' + <%= i18n_t_m(model) %>, new_<%= namespace_for_route %><%= singular_table_name %>_path, :class => "btn btn-default" %>
   <%% if <%= model_with_engine_camelize %>.columns.map(&:name).include?("<%= model %>_id") then %>
