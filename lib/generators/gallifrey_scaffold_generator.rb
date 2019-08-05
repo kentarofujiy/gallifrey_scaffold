@@ -127,8 +127,8 @@ class GallifreyScaffoldGenerator < Rails::Generators::Base
     copy_file "app/views/_mass_inserting.html.erb", "app/views/layouts/_mass_inserting.html.erb"
 
     inject_into_file("app/views/layouts/_gallifrey_menu.html.erb",'
-      <li class="<%= "active" if params[:controller] == "' + namespace_for_url + model.pluralize + '" %>">
-        <%= link_to ' + i18n_t_m_p(model) + '.capitalize, ' + namespace_for_route + model.pluralize + '_path %>
+      <li class="nav-item <%= "active" if params[:controller] == "' + namespace_for_url + model.pluralize + '" %>">
+        <%= link_to ' + i18n_t_m_p(model) + '.capitalize, ' + namespace_for_route + model.pluralize + '_path,  class:"nav-link" %>
       </li>', :after => "<!-- Gallifrey Scaffold Menu Do Not Touch This -->")
   end
 
