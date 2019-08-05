@@ -1,0 +1,17 @@
+  <div class="col-md-3">
+    <%%= search_form_for @q, :url => <%= namespace_for_route + 'search_' + model_pluralize + '_path' %>, :html => { :class => "well well-small search-and-filter" }, :method => :post do |f| %>
+
+      <h3><%%= t("search_and_filter", :default => "Search & filter") %></h3>
+
+<%= render_partial 'app/views/partials/_index_search.html.erb' %>
+
+      <!-- Gallifrey_scaffold - AddField - Search - Do not remove -->
+
+<%#= render_partial 'app/views/partials/_index_search_default_fields.html.erb' %>
+
+
+
+      <%%= f.submit t(:filter, :default => "Filter"), :class => "btn btn-primary" %>
+      <%%= link_to  t(:cancel, :default => "Cancel"), <%= namespace_for_route %><%= model_pluralize %>_path(:nosearch => "ok"), :class => "btn btn-default" %>
+      <%% end %>
+  </div>
