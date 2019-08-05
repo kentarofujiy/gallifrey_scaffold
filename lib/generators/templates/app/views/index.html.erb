@@ -6,7 +6,7 @@
   <%% end %>
 </p>
 
-<%#= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
+<%= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
 <div class="row">
   <div class="col-md-9">
     <%%= form_tag  batch_<%= namespace_for_route %><%= plural_table_name %>_path, :class => "form-inline" do %>
@@ -69,12 +69,7 @@
                   :next_label => t(:next, :default => "Next") %>
 
         </div>
-        <div class="btn-group pull-right">
-          <%%= link_to '<i class="fa fa-download"></i> CSV'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :csv), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> XML'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :xml), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> JSON'.html_safe, <%= namespace_for_route %><%= plural_table_name %>_path(:format => :json), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> PDF'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :pdf), :class => "btn btn-default" %>
-        </div>
+   
       </div>
     <%% end %>
   </div>
