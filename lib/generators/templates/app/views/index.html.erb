@@ -6,10 +6,11 @@
   <%% end %>
 </p>
 
-<%= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
+<%#= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
 <div class="row">
   <div class="col-md-9">
- 
+    <%%= form_tag  batch_<%= namespace_for_route %><%= plural_table_name %>_path, :class => "form-inline" do %>
+
 
       <%%= render :partial => "layouts/modal_columns", :locals => { :engine_name => '<%= engine_opt %>', :model_name => "<%= singular_table_name %>", :model_columns => [<%= (attributes.map{ |e| "'#{e.name}'" }.to_a + ["'created_at'", "'updated_at'"]).join(',') %>] } %>
 
