@@ -1,3 +1,4 @@
+
 <%- attributes.each do |attribute| -%>
             <span <%%= visible_column("<%= singular_table_name %>", "<%= attribute.name %>") %> class="bs-col-<%= attribute.name %> <%%= align_attribute("<%= attribute.type %>") %>">
               <%- if @gallifrey_attributes.include?(attribute.name + ':price') then -%>
@@ -22,7 +23,7 @@
             <td class="ac am"><%%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_<%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:edit, :default => "Edit") %></td>
             <td class="ac am"><%%= link_to '<i class="fa fa-times"></i>'.html_safe, <%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :data => { :confirm => t(:are_you_sure, :default => "Are you sure?") }, :method => :delete, :title => t(:destroy, :default => "Destroy") %></td>
           </tr>
-        
+      
      
 
       <div class="btn-toolbar">
@@ -33,7 +34,7 @@
                   :outer_window => 0,
                   :previous_label => t(:prev, :default => "Previous"),
                   :next_label => t(:next, :default => "Next") %>
-
+    <%% end %>
         </div>
    <%#= render_partial 'app/views/partials/_index_file_download.html.erb' %>
       </div>
