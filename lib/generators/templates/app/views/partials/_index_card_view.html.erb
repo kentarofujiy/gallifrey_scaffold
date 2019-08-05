@@ -1,5 +1,11 @@
-          <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
-<%- attributes.each do |attribute| -%>
+<div class="card-deck">
+       <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+  <div class="card">
+    <%% if <%= singular_table_name %>.avatar.attached? %>
+<img src="<%%= url_for <%= singular_table_name %>.avatar %>" class="card-img-top"/>
+    <%% end %>
+    <div class="card-body">
+      <%- attributes.each do |attribute| -%>
             <span <%%= visible_column("<%= singular_table_name %>", "<%= attribute.name %>") %> class="bs-col-<%= attribute.name %> <%%= align_attribute("<%= attribute.type %>") %>">
               <%- if @gallifrey_attributes.include?(attribute.name + ':price') then -%>
                 <%%= number_to_currency(<%= singular_table_name %>.<%= attribute.name %>, :locale => I18n.locale) %>
@@ -16,14 +22,26 @@
               <%- end -%>
             </span>
 <%- end -%>
-<%% if <%= singular_table_name %>.avatar.attached? %>
-<img src="<%%= url_for <%= singular_table_name %>.avatar %>" />
-<%% end %>
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+    </div>
+      <div class="card-footer">
+     
            <td class="ac am"><%%= link_to '<i class="fa fa-search"></i>'.html_safe, <%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:show, :default => "Show") %></td>
             <td class="ac am"><%%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_<%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :title => t(:edit, :default => "Edit") %></td>
             <td class="ac am"><%%= link_to '<i class="fa fa-times"></i>'.html_safe, <%= namespace_for_route %><%= singular_table_name %>_path(<%= singular_table_name %>), :data => { :confirm => t(:are_you_sure, :default => "Are you sure?") }, :method => :delete, :title => t(:destroy, :default => "Destroy") %></td>
           </tr>
       
+    </div>
+  </div>
+
+    <%% end %>
+       
+       
+     
+
+
      
 
       <div class="btn-toolbar">
@@ -38,6 +56,6 @@
         </div>
    <%#= render_partial 'app/views/partials/_index_file_download.html.erb' %>
       </div>
-<%% end %>
 
+</div>   
    <%#= render_partial 'app/views/partials/_index_column_filter.html.erb' %>
