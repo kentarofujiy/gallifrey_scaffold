@@ -69,7 +69,7 @@
                   :next_label => t(:next, :default => "Next") %>
 
         </div>
-   <%= render_partial 'app/views/partials/_index_file_download.html.erb' %>
+   <%#= render_partial 'app/views/partials/_index_file_download.html.erb' %>
       </div>
     <%% end %>
   </div>
@@ -82,20 +82,8 @@
 
       <!-- Gallifrey_scaffold - AddField - Search - Do not remove -->
 
-      <div class="panel-group">
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <a class="accordion-toggle" data-toggle="collapse-next">
-              <%%= t(:more_options, :default => "More options...") %>
-            </a>
-          </div>
-          <div class="panel-collapse collapse">
-            <div class="panel-body">
 <%= render_partial 'app/views/partials/_index_search_default_fields.html.erb' %>
-            </div>
-          </div>
-        </div>
-      </div>
+
 
 
       <%%= f.submit t(:filter, :default => "Filter"), :class => "btn btn-primary" %>

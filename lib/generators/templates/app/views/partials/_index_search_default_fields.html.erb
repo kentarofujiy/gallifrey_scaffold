@@ -1,3 +1,17 @@
+
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a class="accordion-toggle" data-toggle="collapse-next">
+              <%%= t(:more_options, :default => "More options...") %>
+            </a>
+          </div>
+          <div class="panel-collapse collapse">
+            <div class="panel-body">
 <%- { :created_at => "Created At", :updated_at => "Updated At", :id => "Id" }.each{ |k,v| -%>
               <%%= ransack_field("<%= singular_table_name %>", "<%= k.to_s %>", f, "<%= v %>"<%= (engine_name.blank? ? '' : ", \"#{engine_opt}\"") %>) %>
 <%- } -%>
+            </div>
+          </div>
+        </div>
+      </div>
