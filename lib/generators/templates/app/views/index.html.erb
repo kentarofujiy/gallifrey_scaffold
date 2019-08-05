@@ -6,7 +6,7 @@
   <%% end %>
 </p>
 
-<%= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
+<%#= render_partial 'app/views/partials/_index_unused_stuff.html.erb' %>
 <div class="row">
   <div class="col-md-9">
     <%%= form_tag  batch_<%= namespace_for_route %><%= plural_table_name %>_path, :class => "form-inline" do %>
@@ -69,7 +69,7 @@
                   :next_label => t(:next, :default => "Next") %>
 
         </div>
-   
+   <%= render_partial 'app/views/partials/_index_file_download.html.erb' %>
       </div>
     <%% end %>
   </div>

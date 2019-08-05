@@ -46,9 +46,4 @@
         </select>
         <button class="btn btn-default" type="submit"><i class="fa fa-ok"></i> <%%= t(:process, :default => "Process") %></button>
       </div>
-         <div class="btn-group pull-right">
-          <%%= link_to '<i class="fa fa-download"></i> CSV'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :csv), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> XML'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :xml), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> JSON'.html_safe, <%= namespace_for_route %><%= plural_table_name %>_path(:format => :json), :class => "btn btn-default" %>
-          <%%= link_to '<i class="fa fa-download"></i> PDF'.html_safe,  <%= namespace_for_route %><%= plural_table_name %>_path(:format => :pdf), :class => "btn btn-default" %>
-        </div>
+ 
