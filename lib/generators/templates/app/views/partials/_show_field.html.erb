@@ -1,4 +1,12 @@
-<%- attributes.each do |attribute| -%>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-6">
+      <%% if @<%= singular_table_name %>.avatar.attached? %>
+<img src="<%%= url_for @<%= singular_table_name %>.avatar %>" />
+<%% end %>
+    </div>
+        <div class="col-12 col-lg-6">
+          <%- attributes.each do |attribute| -%>
   <p>
     <b><%%= <%= i18n_t_a(singular_table_name, attribute.name) %> %>:</b>
     <%- if @gallifrey_attributes.include?(attribute.name + ':price') then -%>
@@ -15,6 +23,12 @@
   </p>
  
 <%- end -%>
-<%% if @<%= singular_table_name %>.avatar.attached? %>
-<img src="<%%= url_for @<%= singular_table_name %>.avatar %>" />
-<%% end %>
+          
+        </div>
+  </div>
+
+
+
+
+
+</div>
