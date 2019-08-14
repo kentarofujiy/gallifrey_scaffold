@@ -33,6 +33,9 @@
         <tbody>
           <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
           <tr class="line-<%%= cycle("1","2") %>">
+            <td><%% if <%= singular_table_name %>.avatar.attached? %>
+<img src="<%%= url_for <%= singular_table_name %>.avatar %>" />
+<%% end %></td>
             <td class="ar"><%%= <%= singular_table_name %>.id %></td>
             <td><%%= check_box_tag "ids[]",<%= singular_table_name %>.id, false, :class => 'cbbatch' %></td>
 <%= render_partial 'app/views/partials/_index_column.html.erb' %><!-- Gallifrey_scaffold - AddField - Column - Do not remove -->
