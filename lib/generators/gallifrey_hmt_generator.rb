@@ -34,7 +34,7 @@ class GallifreyHmtGenerator < Rails::Generators::Base
       "
  
       #migration_name = "create_join_table_for_#{sorted_model[0]}_and_#{sorted_model[1]}"
-      generate("model", (model_command model_options))
+      generate("model", "#{model_command} #{model_options}")
 
      # filename = Dir.glob("db/migrate/*#{migration_name}.rb")[0]
 
