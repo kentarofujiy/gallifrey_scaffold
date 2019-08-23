@@ -23,7 +23,7 @@ class GallifreyHmtGenerator < Rails::Generators::Base
      # add_index :#{sorted_model[0].pluralize}_#{sorted_model[1].pluralize}, [:#{sorted_model[0]}_id, :#{sorted_model[1]}_id]
       #"
       model_command = "
-      #{sorted_model[0]}.capitalize#{sorted_model[1]}.capitalize
+      #{sorted_model[0]}_#{sorted_model[1]}
       "
       model_options ="
       #{sorted_model[0]}_id:integer #{sorted_model[1]}_id:integer
