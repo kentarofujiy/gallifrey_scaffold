@@ -34,7 +34,7 @@ class GallifreyJointableGenerator < Rails::Generators::Base
       "
  
       #migration_name = "create_join_table_for_#{sorted_model[0]}_and_#{sorted_model[1]}"
-      generate("model", "CapaCover capa_id:integer cover_id:integer")
+      generate("model", "#{sorted_model[0]}_#{sorted_model[1]} #{sorted_model[0]}_id:integer #{sorted_model[1]}_id:integer")
 
      # filename = Dir.glob("db/migrate/*#{migration_name}.rb")[0]
 
@@ -47,10 +47,10 @@ class GallifreyJointableGenerator < Rails::Generators::Base
       
         inject_into_file("app/models/#{sorted_model[1]}.rb", "\n has_many :#{sorted_model[0]}_#{sorted_model[1].pluralize} \n has_many :#{sorted_model[0].pluralize}, through: :#{sorted_model[0]}_#{sorted_model[1].pluralize}", :after => "< ApplicationRecord")
         
-      inject_into_file("app/models/#{sorted_model[0]}.rb", "#{sorted_model[1]}_ids[], ",  :after => "def self.permitted_attributes\n    return ")
+      inject_into_file("app/controllers/#{sorted_model[0].pluralize}_controller.rb", ",#{sorted_model[1]}_ids:[], ",  :after => "permitted_attributes")
         inject_into_file("app/models/#{sorted_model[1]}.rb", "#{sorted_model[0]}_ids[], ",  :after => "def self.permitted_attributes\n    return ")
         inject_into_file("app/views/#{sorted_model[1].pluralize}/_form.html.erb", "\n <%= f.collection_check_boxes :#{sorted_model[0]}_ids, #{sorted_model[0].capitalize}.all, :id, :primary do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
-                inject_into_file("app/views/#{sorted_model[0].pluralize}/_form.html.erb", "\n <%= form.collection_check_boxes :#{sorted_model[1]}_ids, #{sorted_model[1].capitalize}.all, :id, :title do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
+                inject_into_file("app/views/#{sorted_model[0].pluralize}/_form.html.erb", "\n <%= f.collection_check_boxes :#{sorted_model[1]}_ids, #{sorted_model[1].capitalize}.all, :id, :title do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
       #inject_into_file("app/models/#{sorted_model[1]}.rb", ":#{sorted_model[0]}_ids, ", :after => "attr_accessible ")
     end
   end
