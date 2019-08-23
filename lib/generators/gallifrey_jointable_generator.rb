@@ -42,8 +42,11 @@ class GallifreyJointableGenerator < Rails::Generators::Base
 
       # Add habtm relation
       inject_into_file("app/models/#{sorted_model[0]}_#{sorted_model[1]}.rb", "\n  belongs_to :#{sorted_model[0]} \n belongs_to :#{sorted_model[1]}", :after => "< ApplicationRecord")
-      inject_into_file("app/models/#{sorted_model[0]}.rb", "has_many :#{sorted_model[0]}_#{sorted_model[1].pluralize} \n has_many :#{sorted_model[1].pluralize}, through: :#{sorted_model[0]}_#{sorted_model[1].pluralize}", :after => "< ApplicationRecord")
-        inject_into_file("app/models/#{sorted_model[1]}.rb", "has_many :#{sorted_model[0]}_#{sorted_model[1].pluralize} \n has_many :#{sorted_model[0].pluralize}, through: :#{sorted_model[0]}_#{sorted_model[1].pluralize}", :after => "< ApplicationRecord")
+      
+      inject_into_file("app/models/#{sorted_model[0]}.rb", "\n has_many :#{sorted_model[0]}_#{sorted_model[1].pluralize} \n has_many :#{sorted_model[1].pluralize}, through: :#{sorted_model[0]}_#{sorted_model[1].pluralize}", :after => "< ApplicationRecord")
+      
+        inject_into_file("app/models/#{sorted_model[1]}.rb", "\n has_many :#{sorted_model[0]}_#{sorted_model[1].pluralize} \n has_many :#{sorted_model[0].pluralize}, through: :#{sorted_model[0]}_#{sorted_model[1].pluralize}", :after => "< ApplicationRecord")
+        
       inject_into_file("app/models/#{sorted_model[0]}.rb", "#{sorted_model[1]}_ids[], ",  :after => "def self.permitted_attributes\n    return ")
         inject_into_file("app/models/#{sorted_model[1]}.rb", "#{sorted_model[0]}_ids[], ",  :after => "def self.permitted_attributes\n    return ")
       #inject_into_file("app/models/#{sorted_model[1]}.rb", ":#{sorted_model[0]}_ids, ", :after => "attr_accessible ")
