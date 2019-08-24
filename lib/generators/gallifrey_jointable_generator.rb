@@ -66,7 +66,7 @@ class GallifreyJointableGenerator < Rails::Generators::Base
         # end
    
    -      inject_into_file("app/views/#{sorted_model[0].pluralize}/show.html.erb", "\n  <ul><%=  @#{sorted_model[0]}.#{sorted_model[1].pluralize}.each do |ba| %> 
- <a href="/"#{sorted_model[1].pluralize}"/"#{<%=ba.id%>}"" >
+ <a href="/"#{sorted_model[1].pluralize}"/<%=ba.id%>" >
   <li><%= ba.attributes.keys %>:  <%= ba.attributes.values %></li>
   </a>
   <% end %>
