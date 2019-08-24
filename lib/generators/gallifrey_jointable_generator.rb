@@ -54,7 +54,11 @@ class GallifreyJointableGenerator < Rails::Generators::Base
         inject_into_file("app/views/#{sorted_model[1].pluralize}/_form.html.erb", "\n  <%= f.collection_check_boxes :#{sorted_model[0]}_ids, #{sorted_model[0].capitalize}.all, :id, @#{sorted_model[1]}.attributes.keys[1].to_sym do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
         
         inject_into_file("app/views/#{sorted_model[0].pluralize}/_form.html.erb", "\n <%= f.collection_check_boxes :#{sorted_model[1]}_ids, #{sorted_model[1].capitalize}.all, :id, @#{sorted_model[0]}.attributes.keys[1].to_sym do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
-        inject_into_file("app/views/#{sorted_model[0].pluralize}/show.html.erb", render_partial("app/views/partials/_hmt_related_show_0.html.erb",  locals: { object: "#{rmodel0}" }), :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")
+        inject_into_file"app/views/#{sorted_model[0].pluralize}/show.html.erb", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->" do
+            <<-RUBY
+            <%= render_partial("app/views/partials/_hmt_related_show_0.html.erb",  locals: { object: "#{rmodel0}" } %>
+            RUBY
+        end
             inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", render_partial("app/views/partials/_hmt_related_show_1.html.erb"), :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")
         # inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", "\n  <%  @#{sorted_model[1]}.#{sorted_model[0].pluralize}.each do |ba| %><%= ba.id %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->") 
 
