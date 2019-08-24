@@ -54,6 +54,8 @@ class GallifreyMigrationGenerator < Rails::Generators::Base
 
   def generate_views
     commonpath = "app/views/#{namespace_for_url}#{model_pluralize}/"
+    rmodel0 = "@#{sorted_model[0]}.#{sorted_model[1].pluralize}"
+    rmodel1 = "@#{sorted_model[1]}.#{sorted_model[0].pluralize}"
     
     # Form
     inject_into_file("#{commonpath}_form.html.erb", render_partial("app/views/partials/_form_field.html.erb"), :before => "<!-- Gallifrey_scaffold - AddField - Do not remove -->\n" )
