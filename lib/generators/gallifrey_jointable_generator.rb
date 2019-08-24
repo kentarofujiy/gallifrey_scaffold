@@ -68,7 +68,6 @@ class GallifreyJointableGenerator < Rails::Generators::Base
    inject_into_file("app/views/#{sorted_model[0].pluralize}/show.html.erb", "\n  <ul><%=  @#{sorted_model[0]}.#{sorted_model[1].pluralize}.each do |ba| %> 
  <% link_to @#{sorted_model[1] do %> 
   <li><%= ba.attributes.keys %>:  <%= ba.attributes.values %></li>
-  </a>
   <% end %>
  <ul><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")          
 
