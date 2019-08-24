@@ -59,7 +59,12 @@ class GallifreyJointableGenerator < Rails::Generators::Base
             <%= render_partial("app/views/partials/_hmt_related_show_0.html.erb",  locals: { object: "#{rmodel0}" } %>
             RUBY
         end
-            inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", render_partial("app/views/partials/_hmt_related_show_1.html.erb"), :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")
+           inject_into_file"app/views/#{sorted_model[1].pluralize}/show.html.erb", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->" do
+            <<-RUBY
+            <%= render_partial("app/views/partials/_hmt_related_show_1.html.erb",  locals: { object: "#{rmodel1}" } %>
+            RUBY
+        end
+            
         # inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", "\n  <%  @#{sorted_model[1]}.#{sorted_model[0].pluralize}.each do |ba| %><%= ba.id %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->") 
 
       #inject_into_file("app/models/#{sorted_model[1]}.rb", ":#{sorted_model[0]}_ids, ", :after => "attr_accessible ")

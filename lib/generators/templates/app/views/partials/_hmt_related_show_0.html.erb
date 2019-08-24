@@ -1,6 +1,6 @@
 <ul>
  <%=  object.each do |ba| %> 
- <a href="/"#{sorted_model[1].pluralize}"/<%= ba.id %>">
+ <a href="/"#{object}"/<%= ba.id %>">
   <li><%= ba.attributes.keys %>:  <%= ba.attributes.values %></li>
   </a>
   <% end %>
