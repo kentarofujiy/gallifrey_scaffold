@@ -32,7 +32,8 @@ class GallifreyJointableGenerator < Rails::Generators::Base
         belongs_to #{sorted_model[0]}
         belongs_to #{sorted_model[1]}
       "
- 
+    rmodel0 = "@#{sorted_model[0]}.#{sorted_model[1].pluralize}"
+    rmodel1 = "@#{sorted_model[1]}.#{sorted_model[0].pluralize}"
       #migration_name = "create_join_table_for_#{sorted_model[0]}_and_#{sorted_model[1]}"
       generate("model", "#{sorted_model[0]}_#{sorted_model[1]} #{sorted_model[0]}_id:integer #{sorted_model[1]}_id:integer")
 
