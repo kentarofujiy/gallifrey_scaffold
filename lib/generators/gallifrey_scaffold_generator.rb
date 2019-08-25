@@ -203,8 +203,7 @@ class GallifreyScaffoldGenerator < Rails::Generators::Base
       empty_template_path   = File.join(["app", "views", filename].flatten)
       template empty_template_path, current_template_path
     end
-
-    copy_file  "app/views/_form_habtm_tag.html.erb", "app/views/layouts/_form_habtm_tag.html.erb"
+      copy_file  "app/views/_form_habtm_tag.html.erb", "app/views/layouts/_form_habtm_tag.html.erb"
   end
 
   def install_ransack_intializer
