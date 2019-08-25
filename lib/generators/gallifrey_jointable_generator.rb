@@ -55,7 +55,7 @@ class GallifreyJointableGenerator < Rails::Generators::Base
         
         inject_into_file("app/views/#{sorted_model[0].pluralize}/_form.html.erb", "\n <%= f.collection_check_boxes :#{sorted_model[1]}_ids, #{sorted_model[1].capitalize}.all, :id, @#{sorted_model[0]}.attributes.keys[1].to_sym do |cb| %><% cb.label(class: 'checkbox-inline input_checkbox col-sm-2', style: 'float: none') {cb.check_box(class: 'checkbox') + cb.text} %><% end %>", :after => "<!-- Gallifrey_scaffold - AddField - Do not remove -->")
    inject_into_file("app/views/#{sorted_model[0].pluralize}/show.html.erb", "\n  <ul><%=  @#{sorted_model[0]}.#{sorted_model[1].pluralize}.each do |ba| %><li><%= ba.attributes.keys %>:<%= ba.attributes.values %></li><% end %></ul>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")   
-      inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", "\n  <ul><%=  @#{sorted_model[1]}.#{sorted_model[0].pluralize}.each do |ba| %><li><%= ba.attributes.keys %>:<%= ba.attributes.values %></li><% end %></ul>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")   
+      inject_into_file("app/views/#{sorted_model[1].pluralize}/show.html.erb", "\n  <ul><%=  @#{sorted_model[1]}.#{sorted_model[0].pluralize}.each do |ba| %><li><a href="/"#{sorted_model[0]}""><%= ba.attributes.keys %>:<%= ba.attributes.values %></li><% end %></ul>", :after => "<!-- Gallifrey_scaffold - AddField - Field - Do not remove -->")   
 
         end
     end
