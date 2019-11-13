@@ -102,7 +102,7 @@ class GallifreyDevisecancanGenerator < Rails::Generators::Base
   end
 
   def install_cancan
-    gem("cancan")
+    gem("cancancan")
 
     inside Rails.root do
       run "bundle install"
