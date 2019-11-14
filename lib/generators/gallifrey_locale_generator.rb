@@ -5,12 +5,12 @@ class GallifreyLocaleGenerator < Rails::Generators::Base
 
   source_root File.expand_path('../templates', __FILE__)
 
-  argument :name, :type => :string, :desc => "type of locale : fr OR en OR de OR ja all..."
+  argument :name, :type => :string, :desc => "type of locale : fr OR en OR de OR ja OR pt OR all..."
 
   class_option :mountable_engine, :default => nil
 
   def list_locales
-    availablelocale = ["fr", "en", "ja"]
+    availablelocale = ["fr", "en", "ja", "pt"]
 
     localestr = name.downcase
     (localestr == 'all' ? availablelocale : [localestr])

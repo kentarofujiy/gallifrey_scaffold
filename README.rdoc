@@ -2,28 +2,16 @@
 
 Gallifrey Scaffold is a gem which propose generators for a complete scaffold with paginate, sort and filter.
 Fully customizable.
-Info : https://github.com/rivsc/Gallifrey-Scaffold
-Demo : http://demo.gallifrey-scaffold.escarworld.com/
+
 
 == Install
 
-=== RubyOnRails 4.1
-
-Add this in your Gemfile :
-
-    gem 'gallifrey_scaffold', '0.3.4'
-
-=== RubyOnRails 4.2
-
-Add this in your Gemfile :
-
-    gem 'gallifrey_scaffold', '0.3.5'
 
 === RubyOnRails 5+
 
 Add this in your Gemfile :
 
-    gem 'gallifrey_scaffold', '1.0.1'
+      gem 'gallifrey_scaffold', :git => 'https://github.com/kentarofujiy/gallifrey_scaffold.git'
 
 === Next
 
@@ -66,6 +54,7 @@ Run `rake db:migrate` before `rails g gallifrey_locale` (to get lastest attribut
     rails g gallifrey_locale en
     rails g gallifrey_locale fr
     rails g gallifrey_locale de
+    rails g gallifrey_locale pt
 
 === Join Table (has_and_belongs_to_many relation)
 

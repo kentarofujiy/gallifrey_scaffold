@@ -3,7 +3,7 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "gallifrey_scaffold"
-  s.version     = "1.0.1"
+  s.version     = "1.0.2"
   s.platform    = Gem::Platform::RUBY  
   s.summary     = "Begin Galiffrey 3"
   s.email       = "kentaro@manacadigital.com.br"
