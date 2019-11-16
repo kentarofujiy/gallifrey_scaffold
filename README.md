@@ -44,10 +44,10 @@
 + run db migrations if any
     rake db:migrate
 + tell the controller it's now managed by cancan:
- ```ruby
-   # Uncomment for check abilities with CanCan
-  authorize_resource
- ```
+```ruby
+    # Uncomment for check abilities with CanCan
+    authorize_resource
+```
 + bengin setting up abilities:
     in models:ability.rb
         ```ruby
