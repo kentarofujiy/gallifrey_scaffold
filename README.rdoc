@@ -40,10 +40,10 @@
 + run db migrations if any
     rake db:migrate
 + tell the controller it's now managed by cancan:
-```javascript
-var s = "JavaScript syntax highlighting";
-alert(s);
-```
+    ```javascript
+    var s = "JavaScript syntax highlighting";
+    alert(s);
+    ```
 + bengin setting up abilities:
     in models:ability.rb
         can :manage, :all if user.role == "admin"
