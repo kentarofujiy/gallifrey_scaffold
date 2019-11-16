@@ -2,7 +2,9 @@
     rails new aut -d postgresql
 + add Gallifrey to your project:
     in Gemfile:
+```ruby
     gem 'gallifrey_scaffold', :git => 'https://github.com/kentarofujiy/gallifrey_scaffold.git'
+```    
 + bundle
     bundle install
 + create test and dev dbs
@@ -11,6 +13,7 @@
     rake db:migrate
 + you don't want Gallifrey messing with your gems so add the dependencies yourself:
     in Gemfile
+```ruby
     gem 'will_paginate'
     gem 'ransack'
     gem 'polyamorous', '1.3.1'
@@ -27,6 +30,7 @@
     gem 'browser'
     gem 'jquery_mask_rails'
     gem "responders"
+```
 + bundle
     bundle install
 + setup Active Storage (I, mean at least do the very basics at this point):
@@ -40,19 +44,25 @@
 + run db migrations if any
     rake db:migrate
 + tell the controller it's now managed by cancan:
-    ```javascript
-    var s = "JavaScript syntax highlighting";
-    alert(s);
-    ```
+ ```ruby
+   # Uncomment for check abilities with CanCan
+  authorize_resource
+ ```
 + bengin setting up abilities:
     in models:ability.rb
+        ```ruby
         can :manage, :all if user.role == "admin"
         can [:index, :show, :edit], :all if user.role == "moderator"
+        ```
 + if you want a dropdown with available roles at user editing form:
     in models>user.rb
+          ```ruby
           ROLES = %i[admin moderator author banned] (or whatever list or options you may like)
+          ```
     in views>users>_form.html.erb
+          ```ruby
           <%= f.collection_select(:role, User::ROLES, :to_s, lambda{|i| i.to_s.humanize}) %>
+          ```
 + it might be a good idea not to allow other users to set roles to do so:
     controllers>users_controller.rb:
         in update action:
