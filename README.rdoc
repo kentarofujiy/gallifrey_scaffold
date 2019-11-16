@@ -40,11 +40,10 @@
 + run db migrations if any
     rake db:migrate
 + tell the controller it's now managed by cancan:
-    in controllers/users_controller.rb uncomment:
-        ```ruby
-        # Uncomment for check abilities with CanCan
-        authorize_resource
-        ```
+```javascript
+var s = "JavaScript syntax highlighting";
+alert(s);
+```
 + bengin setting up abilities:
     in models:ability.rb
         can :manage, :all if user.role == "admin"
