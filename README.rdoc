@@ -42,8 +42,8 @@
 + tell the controller it's now managed by cancan:
     in controllers/users_controller.rb uncomment:
         ```ruby
-          # Uncomment for check abilities with CanCan
-          authorize_resource
+        # Uncomment for check abilities with CanCan
+        authorize_resource
         ```
 + bengin setting up abilities:
     in models:ability.rb
