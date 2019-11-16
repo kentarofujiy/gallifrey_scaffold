@@ -1,12 +1,12 @@
-= Gallifrey is work in progress largely based on [Beautiful Scaffold](https://github.com/rivsc/Beautiful-Scaffold) but for rails >5.2 and bootstrap4.
+# Gallifrey is work in progress largely based on [Beautiful Scaffold](https://github.com/rivsc/Beautiful-Scaffold) but for rails >5.2 and bootstrap4.
 
 > BE WARNED: it's buggy and only (often) makes sense only to myself. The documentation may not be updated and I am often changing this...
 
-== How to use this:
+## How to use this:
 
 + create new rails project with Postgres database:
 ```bash
-rails new aut -d postgresql
+rails new <name> -d postgresql
 ```
 + add Gallifrey to your project:
     in Gemfile:
