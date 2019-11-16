@@ -50,10 +50,10 @@
 ```
 + bengin setting up abilities:
     in models:ability.rb
-        ```ruby
-        can :manage, :all if user.role == "admin"
-        can [:index, :show, :edit], :all if user.role == "moderator"
-        ```
+```ruby
+    can :manage, :all if user.role == "admin"
+    can [:index, :show, :edit], :all if user.role == "moderator"
+```
 + if you want a dropdown with available roles at user editing form:
     in models>user.rb
           ```ruby
